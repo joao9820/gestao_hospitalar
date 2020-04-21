@@ -15,11 +15,7 @@ class UnidadesController extends Controller
     public function index()
     {
 
-        $products  = Unidades::all();
-
-        $response["products"] = $products;
-        $response["success"] = 1;
-        return response()->json($response);
+        return Unidades::all();
     }
 
     /**
