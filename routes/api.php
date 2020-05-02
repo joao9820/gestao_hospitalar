@@ -16,3 +16,20 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Toda parte de autenticação fica atrás de /api/auth, nessa classe tudo já está em api
+//Agrupamos tudo que está em auth
+Route::prefix('auth')->group(function(){
+
+	Route::post('registro', 'AuthenticationController@register');
+	Route::post('login', 'AuthenticationController@login');
+
+	//Só pode acessar se já tiver logado
+	Route::middleware('auth:api')->group(function(){
+		Route::get('logout', 'AuthenticationController@logout');
+	});
+
+});
+
+//fica fora do /auth. Só /api/unidades
+Route::get('unidades', 'UnidadesController@index')->middleware('auth:api');

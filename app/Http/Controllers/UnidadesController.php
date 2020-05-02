@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Unidades;
+use App\Unidade;
 
 class UnidadesController extends Controller
 {
@@ -15,7 +15,7 @@ class UnidadesController extends Controller
     public function index()
     {
 
-        return Unidades::all();
+        return Unidade::all();
     }
 
     /**
