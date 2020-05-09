@@ -15,6 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-use App\Unidades;
-
-Route::get('/unidades', 'UnidadesController@index');
+Route::get('login', 'LoginController@index');
