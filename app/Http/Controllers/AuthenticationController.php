@@ -55,7 +55,7 @@ class AuthenticationController extends Controller
     	if(!Auth::attempt($credentials)){
 
     		return response()->json([
-    			'resp' => 'Acesso negado'
+    			'resp' => 'Usuário e/ou senha incorreto'
     		], 401);
 
     	}
