@@ -72,6 +72,69 @@ class AuthenticationController extends Controller
 
     }
 
+    public function registerWeb(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|confirmed'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+
+        if(!$user->save()){
+
+            return response()->json([
+            'resp' => 'Não foi possível realizar o cadastro do usuário', 
+            ], 400);
+
+        }
+
+        return response()->json([
+            'resp' => 'Usuário criado com sucesso!', 
+        ], 201);
+        
+    }
+
+    public function loginWeb(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email',
+            'password' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        //retorna TRUE
+        if(!Auth::attempt($credentials)){
+
+            return response()->json([
+                'resp' => 'Usuário e/ou senha incorreto'
+            ], 401);
+
+        }
+
+        return response()->json([
+            'resp' => 'OK'
+        ], 200);
+
+    }
+
     public function logout(Request $request){
     	//Revoga o Token gerado
     	auth()->user()->token()->revoke();

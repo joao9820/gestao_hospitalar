@@ -15,4 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', 'LoginController@index');
+Auth::routes();
+
+Route::get('login_teste', 'LoginController@index')->name('login_teste');
+Route::get('unidades', 'UnidadesController@indexView')->name('unidades');
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('login_teste', 'AuthenticationController@loginWeb')->name('login_teste');
+
+Route::get('register_web', 'LoginController@register')->name('register_web');
+Route::post('register_teste', 'AuthenticationController@registerWeb')->name('register_teste');

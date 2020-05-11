@@ -5,19 +5,10 @@
 @section('style')
 	
 <style type="text/css">
-	
-	html, body {
-	  height: 100%;
-	}
-
-	.fill { 
-	    min-height: 100%;
-	    height: 100%;
-	}
 
 	body{
-		background: url({{asset('imagem/background-img.jpg')}});
-		background-size: 100% 100%;
+		  background-image: url("{{asset('imagem/background-img.jpg')}}");
+	 	 background-size: 100% 100%;
 
 	}
 
@@ -34,13 +25,18 @@
 		width: 50%;
 	}
 
+	#fundo {
+	    background: rgba(38, 45, 100, 0.50);
+	   	height: 100%;
+	    top: 0;
+	}
+
 </style>
 @endsection
 
 @section('conteudo')
 	
-<div class='container fill'>
-	<div class="row fill justify-content-center align-items-center">
+	<div class="row fill justify-content-center align-items-center fundo">
 		<div class="col-md-4">
 			<div class="card border">
 
@@ -49,28 +45,32 @@
 				</div>
 			<div class="card-body m-2 bg-light">
 				
+				@if(isset($_GET['register']) && $_GET['register'] == 1)
+					<div class="alert alert-success">
+						Usuário registrado, realize o login para entrar no sistema
+					</div>
+				@endif
+
 				<form method="POST" id="formLogin"> <!-- enctype para subir arquivos é necessário -->
 					<div class="form-group">
-					
-					{{csrf_field()}}
 
 				<span class="throw-error"></span>
 				<div class="form-group">
 					
 					<input class="form-control" id="email" placeholder="E-mail" type="text" name="email">
 					<div class="invalid-feedback" id="feedback-email">
-			          	Please choose a email.
+			          	
 			        </div>
 				</div>
 				<div class="form-group">
 					<input class="form-control" placeholder="Senha" id="password" type="password" name="senha">
 					<div class="invalid-feedback" id="feedback-password">
-			          	Please choose a pass.
+			          	
 			        </div>
 				</div>
 				<div class="d-md-flex flex-row-md">	
 					<button class="btn btn-success mr-2" type="submit">Entrar</button>
-					<button class="btn btn-primary" type="button">Cadastrar</button>
+					<a href="{{route('register_web')}}" class="btn btn-primary">Cadastrar</a>
 				</div>
 				</div>
 				</form>
@@ -78,8 +78,7 @@
 			</div>
 		</div>
 	</div>
-	
-</div>
+
 @endsection
 
 
@@ -140,17 +139,21 @@
 			$('.throw-error').toggle();	
 		}
 
+
+
 		 $.ajax({
-            url: "{{ url('/api/auth/login') }}",
+            url: "{{ route('login_teste') }}",
             data: login,
             type: 'post',
             dataType: 'json',
+            headers:{
+
+				"X-CSRF-TOKEN" : "{{csrf_token()}}"
+			},
             //processData: false,
             //contentType: false,
-
-            success: function(data){
-                console.log(data.token);
-				alert("success");
+            success: function(){
+            	window.location.href = "{{ route('home') }}"
             },
             error: function(data)
             {
@@ -164,21 +167,18 @@
                 }
                 else{
                 	 console.log(data.responseJSON);
-                	  //relevant error
-                	 //alert("fail");
                 	
-                    //$('#err').html('');
-                    //key = name, value = msg
                     $.each(data.responseJSON, function (key, value) {
                     	if(key === 'resp'){
                 			$('.throw-error').toggle();
-                        	$('.throw-error').fadeIn(1000).html(data.responseJSON.resp); //Throw 
+                			$('.throw-error').empty().append(data.responseJSON.resp);
                     	}else{
 
                     		$('#' + key).addClass('is-invalid');
-                        	$('#feedback' + key ).toggle();
+                    		$('#feedback-' + key).empty().append(value);
+                        	
                     	}
-                        //console.log(key);
+                        
                     });
                 }
             }

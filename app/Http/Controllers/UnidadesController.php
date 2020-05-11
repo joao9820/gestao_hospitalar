@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Unidade;
+use Illuminate\Support\Facades\Auth;
 
 class UnidadesController extends Controller
 {
@@ -14,8 +15,13 @@ class UnidadesController extends Controller
      */
     public function index()
     {
-
         return Unidade::all();
+    }
+
+    public function indexView(){
+
+        return view('unidades');
+
     }
 
     /**

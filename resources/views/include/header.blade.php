@@ -6,6 +6,7 @@
 	  <!--Import Google Icon Font-->
 	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	  <!-- Compiled and minified CSS -->
+	  <link rel="stylesheet" type="text/css" href="{{asset('css/layout.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
 	    @hasSection('style')
 		    @yield('style')
@@ -15,4 +16,5 @@
 	</head>
 
 	<body>
-		
+		<div id="fundo">
+		<div class='container fill'>
