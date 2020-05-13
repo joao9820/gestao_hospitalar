@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Route;
 use Laravel\Passport\Client;
 
 class AuthenticationController extends Controller
@@ -72,16 +73,31 @@ class AuthenticationController extends Controller
     	];
 
     	//retorna TRUE
-    	if(!Auth::attempt($credentials)){
+    	/*if(!Auth::attempt($credentials)){
 
     		return response()->json([
     			'resp' => 'Usuário e/ou senha incorreto'
     		], 401);
 
-    	}
+    	}*/
+
+        $params = [
+            "grant_type" => "password",
+            "client_id" => $this->client->id,
+            "client_secret" => $this->client->secret,
+            "username" => $request->email,
+            "password" => $request->password,
+            "scope" => "*"
+        ];
+
+        $request->request->add($params);
+
+        $proxy = Request::create('oauth/token', 'POST');
+
+        return Route::dispatch($proxy);
 
     	//A partir daqui está tudo certo com a autenticação
-    	$user = auth()->user();
+    	/*$user = auth()->user();
 
     	//Retorna um objeto e acessa o método, o retorno a string do token para a var token
     	$token = $user->createToken('Token de Acesso')->accessToken;
@@ -89,7 +105,7 @@ class AuthenticationController extends Controller
     	return response()->json([
             'user' => $user,
     		'token' => $token
-    	], 200);
+    	], 200);*/
 
     }
 
