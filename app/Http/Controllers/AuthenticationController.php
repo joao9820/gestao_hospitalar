@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\Client;
 
 class AuthenticationController extends Controller
 {
+    private $client;
+
+    public function __construct(){
+        $this->client = Client::find(7);
+    }
+
     public function register(Request $request){
 
     	$validator = Validator::make($request->all(), [
@@ -28,6 +35,19 @@ class AuthenticationController extends Controller
     	]);
 
     	$user->save();
+
+        $params = [
+            "grant_type" => "password",
+            "client_id" => $this->client->id,
+            "client_secret" => $this->client->secret,
+            "username" => $request->email,
+            "password" => $request->password,
+            "scope" => "*"
+        ];
+
+        $request->request->add($params);
+
+        $proxy = Request::create('oauth/token', 'POST');
 
     	return response()->json([
     		'resp' => 'Usuário criado com sucesso!', 
