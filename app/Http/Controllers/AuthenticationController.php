@@ -48,31 +48,12 @@ class AuthenticationController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
+        //Corrigir a frase
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['resp' => 'Usuário e/ou senha incorreto'], 401);
         }
 
         return $this->respondWithToken($token);
-
-    	//retorna TRUE
-    	if(!Auth::attempt($credentials)){
-
-    		return response()->json([
-    			'resp' => 'Usuário e/ou senha incorreto'
-    		], 401);
-
-    	}
-
-    	//A partir daqui está tudo certo com a autenticação
-    	$user = auth()->user();
-
-    	//Retorna um objeto e acessa o método, o retorno a string do token para a var token
-    	$token = $user->createToken('Token de Acesso')->accessToken;
-
-    	return response()->json([
-            'user' => $user,
-    		'token' => $token
-    	], 200);
 
     }
 
@@ -86,6 +67,7 @@ class AuthenticationController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
+            'user' => auth('api')->user(),
             'token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
