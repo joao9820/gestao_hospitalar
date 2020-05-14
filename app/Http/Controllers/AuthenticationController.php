@@ -37,7 +37,9 @@ class AuthenticationController extends Controller
 
     public function login(Request $request){
 
-    	$validator = Validator::make($request->all(), [
+        $credentials = $request->only(['email', 'password']);
+
+    	$validator = Validator::make($credentials, [
     		'email' => 'required|string|email',
     		'password' => 'required|string'
         ]);
@@ -46,10 +48,11 @@ class AuthenticationController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-    	$credentials = [
-    		'email' => $request->email,
-    		'password' => $request->password,
-    	];
+        if (!$token = auth('api')->attempt($credentials)) {
+            return response()->json(['resp' => 'Usuário e/ou senha incorreto'], 401);
+        }
+
+        return $this->respondWithToken($token);
 
     	//retorna TRUE
     	if(!Auth::attempt($credentials)){
@@ -71,6 +74,22 @@ class AuthenticationController extends Controller
     		'token' => $token
     	], 200);
 
+    }
+
+     /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
     }
 
     public function registerWeb(Request $request){
@@ -138,7 +157,10 @@ class AuthenticationController extends Controller
 
     public function logout(Request $request){
     	//Revoga o Token gerado
-    	auth()->user()->token()->revoke();
+    	auth('api')->logout();
+
+        // Pass true to force the token to be blacklisted "forever"
+        //auth()->logout(true);
 
     	return response()->json([
     		'resp' => 'Deslogado com sucesso'

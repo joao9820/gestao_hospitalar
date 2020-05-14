@@ -25,11 +25,11 @@ Route::prefix('auth')->group(function(){
 	Route::post('login', 'AuthenticationController@login');
 
 	//Só pode acessar se já tiver logado
-	Route::middleware('auth:api')->group(function(){
-		Route::get('logout', 'AuthenticationController@logout');
+	Route::middleware('apiJWT')->group(function(){
+		Route::post('logout', 'AuthenticationController@logout');
 	});
 
 });
 
 //fica fora do /auth. Só /api/unidades
-Route::get('unidades', 'UnidadesController@index')->middleware('auth:api');
+Route::get('unidades', 'UnidadesController@index')->middleware('apiJWT');
