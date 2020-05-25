@@ -50,7 +50,7 @@ class AuthenticationController extends Controller
 
         //Corrigir a frase
         if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['resp' => 'Usuário e/ou senha incorreto'], 401);
+            return response()->json(['resp' => 'Usuário e/ou senha incorretos'], 401);
         }
 
         return $this->respondWithToken($token);
