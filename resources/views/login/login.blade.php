@@ -17,10 +17,6 @@
 		display: none;
 	}
 
-	.invalid-feedback{
-		display: none;
-	}
-
 	.btn {
 		width: 50%;
 	}
@@ -51,140 +47,44 @@
 					</div>
 				@endif
 
-				<form method="POST" id="formLogin"> <!-- enctype para subir arquivos é necessário -->
-					<div class="form-group">
+				<form method="POST" action="{{ route('login') }}" id="formLogin" novalidate> <!-- enctype para subir arquivos é necessário -->
 
-				<span class="throw-error"></span>
-				<div class="form-group">
-					
-					<input class="form-control" id="email" placeholder="E-mail" type="text" name="email">
-					<div class="invalid-feedback" id="feedback-email">
-			          	
-			        </div>
-				</div>
-				<div class="form-group">
-					<input class="form-control" placeholder="Senha" id="password" type="password" name="senha">
-					<div class="invalid-feedback" id="feedback-password">
-			          	
-			        </div>
-				</div>
-				<div class="d-md-flex flex-row-md">	
-					<button class="btn btn-success mr-2" type="submit">Entrar</button>
-					<a href="{{route('register_web')}}" class="btn btn-primary">Cadastrar</a>
-				</div>
-				</div>
+					{{csrf_field()}}
+
+					<div class="form-group">
+						<span class="throw-error"></span>
+						<div class="form-group">
+							<input class="form-control {{$erroEmail = $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="E-mail" type="text" name="email" value="{{old('email')}}">
+					          
+					          @if($erroEmail)
+
+				          		<div class="invalid-feedback">
+									{{ $errors->first('email') }} 
+									<!-- trará apenas o primeiro erro do array -->
+								</div>
+								@endif
+					        </div>
+						</div>
+						<div class="form-group">
+							<input class="form-control {{$erroPass = $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Senha" id="password" type="password" name="password" value="{{old('password')}}">
+							
+					          	@if($erroPass)
+					          	<div class="invalid-feedback">
+									{{$errors->first('password')}} <!-- trará apenas o primeiro erro do array -->
+								 </div>
+								@endif
+					       
+						</div>
+						<div class="d-md-flex flex-row-md">	
+							<button class="btn btn-success mr-2" type="submit">Entrar</button>
+							<a href="{{route('register')}}" class="btn btn-primary">Cadastrar</a>
+						</div>
+					</div>
 				</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
-@endsection
-
-
-@section('javascript')
-<script type="text/javascript">
-
-	$('#formLogin').submit(function(event){ //event é apenas a variavel, poderia ser outro nome
-
-			event.preventDefault(); //Não da refresh na página após submit
-			
-			realizarLogin();
-			
-			//$('#dlgProdutos').modal('hide');
-
-	});
-
-	/*function realizarLogin(){
-
-			console.log(login);
-
-			$.post("/api/auth/login", login, function(data){
-
-				console.log(data); //dado de texto JSON
-
-				//login = JSON.parse(data.response); //Conversão para obj
-
-				//console.log("erro: " + login); //Buscar ao adicionar o nome da categoria, ta trazendo apenas o id
-
-				//linha = montarLinha(produto);
-
-				//$('#tableProdutos>tbody').append(linha); //Atualiza a tabela
-
-			}, "json")
-			.done(function(response){
-				console.log(response.token);
-				alert("success");
-			})
-			.fail(function(response){
-
-				console.log("erro: " + response.resp);
-
-				alert("fail");
-			});
-		}*/
-
-	function realizarLogin(){
-
-		login = { //objeto de produtos
-			email: $('#email').val(),
-			password:  $('#password').val(),
-		};
-
-		if($('input').hasClass('is-invalid')){
-		    $('input').removeClass('is-invalid');
-		}
-
-		if($('.throw-error').is(':visible')){
-			$('.throw-error').toggle();	
-		}
-
-
-
-		 $.ajax({
-            url: "{{ route('login_teste') }}",
-            data: login,
-            type: 'post',
-            dataType: 'json',
-            headers:{
-
-				"X-CSRF-TOKEN" : "{{csrf_token()}}"
-			},
-            //processData: false,
-            //contentType: false,
-            success: function(){
-            	window.location.href = "{{ route('home') }}"
-            },
-            error: function(data)
-            {
-                if(!data.responseJSON){
-                    console.log(data.responseText);
-                   
-                    //$('#err').html(data.responseText);
-                }else if(typeof fail_credentials != 'undefined'){
-
-                	 alert("E-mail e/ou senha incorreto");
-                }
-                else{
-                	 console.log(data.responseJSON);
-                	
-                    $.each(data.responseJSON, function (key, value) {
-                    	if(key === 'resp'){
-                			$('.throw-error').toggle();
-                			$('.throw-error').empty().append(data.responseJSON.resp);
-                    	}else{
-
-                    		$('#' + key).addClass('is-invalid');
-                    		$('#feedback-' + key).empty().append(value);
-                        	
-                    	}
-                        
-                    });
-                }
-            }
-        });
-	}
-
-</script>
 @endsection
 
