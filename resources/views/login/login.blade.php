@@ -41,9 +41,10 @@
 				</div>
 			<div class="card-body m-2 bg-light">
 				
-				@if(isset($_GET['register']) && $_GET['register'] == 1)
+				<!-- Depois incluir uma msg de sessão -->
+				@if(session()->has('msg'))
 					<div class="alert alert-success">
-						Usuário registrado, realize o login para entrar no sistema
+						{{session()->get('msg')}}
 					</div>
 				@endif
 
