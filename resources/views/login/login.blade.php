@@ -51,6 +51,14 @@
 
 					{{csrf_field()}}
 
+					@if($errors->has('unknown_credentials'))
+
+						<div class="alert alert-danger">
+							{{$errors->first('unknown_credentials')}}
+						</div>
+
+					@endif
+
 					<div class="form-group">
 						<span class="throw-error"></span>
 						<div class="form-group">
