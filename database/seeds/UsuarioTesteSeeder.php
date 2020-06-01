@@ -12,7 +12,7 @@ class UsuarioTesteSeeder extends Seeder
      * @return void
      */
 
-    $cont = 0;
+    $this->cont = 0;
 
     public function run()
     {
@@ -26,7 +26,7 @@ class UsuarioTesteSeeder extends Seeder
     	]);
 
         if($user->save())
-            $cont++;
+            $this->cont++;
 
         $user = new User([
             'name' => 'Teste',
@@ -37,8 +37,8 @@ class UsuarioTesteSeeder extends Seeder
         ]);
 
         if($user->save())
-            $cont++;
+            $this->cont++;
 
-        $this->command->info($cont . ' User(s) created');
+        $this->command->info($this->cont . ' User(s) created');
     }
 }
