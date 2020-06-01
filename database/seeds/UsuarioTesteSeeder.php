@@ -12,10 +12,13 @@ class UsuarioTesteSeeder extends Seeder
      * @return void
      */
 
-    $this->cont = 0;
+    private $cont;
 
     public function run()
     {
+
+        $this->cont = 0;
+
         $user = new User([
     		'name' => 'Admin',
     		'email' => 'admin@gmail.com',
