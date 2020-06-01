@@ -64,6 +64,8 @@ class AuthenticationController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
+     //Verificar como buscar o nível de acesso do usuário
     protected function respondWithToken($token)
     {
         return response()->json([
