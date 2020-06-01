@@ -11,18 +11,34 @@ class UsuarioTesteSeeder extends Seeder
      *
      * @return void
      */
+
+    $cont = 0;
+
     public function run()
     {
         $user = new User([
-    		'name' => 'Teste',
-    		'email' => 'teste@gmail.com',
+    		'name' => 'Admin',
+    		'email' => 'admin@gmail.com',
+            'is_admin' => true,
     		'password' => bcrypt('123456'),
     		'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
     	]);
 
-        $user->save();
+        if($user->save())
+            $cont++;
 
-        $this->command->info('1 user created');
+        $user = new User([
+            'name' => 'Teste',
+            'email' => 'teste@gmail.com',
+            'password' => bcrypt('123456'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        if($user->save())
+            $cont++;
+
+        $this->command->info($cont . ' User(s) created');
     }
 }
