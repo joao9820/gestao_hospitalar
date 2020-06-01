@@ -1,8 +1,7 @@
-@extends('layout.site', ['current' => 'home'])
+@extends('layouts.app')
 
-@section('titulo', 'Página Principal')
-
-@section('conteudo')
+@section('content')
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -16,9 +15,9 @@
                     @endif
 
                     You are logged in!
-                     
                 </div>
             </div>
         </div>
+    </div>
 </div>
 @endsection

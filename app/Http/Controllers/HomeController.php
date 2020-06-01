@@ -14,6 +14,9 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        //Quando precisar de verificar se o usuário é admin
+       // $this->middleware(['auth', 'admin']);
     }
 
     /**

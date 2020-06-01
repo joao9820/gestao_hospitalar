@@ -1,30 +1,6 @@
-@extends('layout.site', ['current' => 'login'])
+@extends('layout.site-auth')
 
 @section('titulo', 'Gestão Hospitalar')
-
-@section('style')
-	
-<style type="text/css">
-
-	body{
-		  background-image: url("{{asset('imagem/background-img.jpg')}}");
-	 	 background-size: 100% 100%;
-
-	}
-
-	.throw-error{
-		color: red;
-		display: none;
-	}
-
-	#fundo {
-	    background: rgba(38, 45, 100, 0.50);
-	   	height: 100%;
-	    top: 0;
-	}
-
-</style>
-@endsection
 
 @section('conteudo')
 	
@@ -42,8 +18,6 @@
 					{{csrf_field()}}
 
 					<div class="form-group">
-
-				<span class="throw-error"></span>
 
 				<div class="form-group">
 					

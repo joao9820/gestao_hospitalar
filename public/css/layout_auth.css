@@ -1,0 +1,21 @@
+html, body, main {
+	  height: 100%;
+}
+
+body{
+
+	 background-image: url("/imagem/background-img.jpg");
+	 background-size: 100% 100%;
+}
+
+#fundo {
+ 	background: rgba(38, 45, 100, 0.50);
+	top: 0; 
+    height: 100%;
+}
+
+.fill{
+
+	height: 100%;
+
+}

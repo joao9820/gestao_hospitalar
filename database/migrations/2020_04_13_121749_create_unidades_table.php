@@ -16,6 +16,11 @@ class CreateUnidadesTable extends Migration
         Schema::create('unidades', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 240);
+            $table->string('cidade');
+            $table->time('primeiro_turno_inicio');
+            $table->time('primeiro_turno_fim');
+            $table->time('segundo_turno_inicio')->nullable();
+            $table->time('segundo_turno_fim')->nullable();
             $table->timestamps();
         });
     }

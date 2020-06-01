@@ -1,4 +1,4 @@
-@extends('layout.site', ['current' => 'login'])
+@extends('layout.site-auth')
 
 @section('titulo', 'Gestão Hospitalar')
 
@@ -6,25 +6,8 @@
 	
 <style type="text/css">
 
-	body{
-		  background-image: url("{{asset('imagem/background-img.jpg')}}");
-	 	 background-size: 100% 100%;
-
-	}
-
-	.throw-error{
-		color: red;
-		display: none;
-	}
-
 	.btn {
 		width: 50%;
-	}
-
-	#fundo {
-	    background: rgba(38, 45, 100, 0.50);
-	   	height: 100%;
-	    top: 0;
 	}
 
 </style>
@@ -61,7 +44,6 @@
 					@endif
 
 					<div class="form-group">
-						<span class="throw-error"></span>
 						<div class="form-group">
 							<input class="form-control {{$erroEmail = $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="E-mail" type="text" name="email" value="{{old('email')}}">
 					          
