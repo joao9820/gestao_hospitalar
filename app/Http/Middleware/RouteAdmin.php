@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 
 class RouteAdmin
 {
@@ -20,7 +19,7 @@ class RouteAdmin
     public function handle($request, Closure $next)
     {
 
-        if (User::isAdmin()) 
+        if (Auth::user()->is_admin) 
             return $next($request);
 
         //Criar uma view para esse caso
