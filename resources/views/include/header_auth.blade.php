@@ -2,9 +2,10 @@
 <html>
 	<head>
 		<meta name="csrf-token" content="{{csrf_token()}}">
-		<title> @yield('titulo') </title> <!-- Criando variaveis a partir do blade-->
+		<title> SGMAC - @yield('titulo') </title> <!-- Criando variaveis a partir do blade-->
 	  <!--Import Google Icon Font-->
 	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	  <link rel="shortcut icon" href="{{asset('imagem/logo.ico')}}" >
 	  <!-- Compiled and minified CSS -->
 	  <link rel="stylesheet" type="text/css" href="{{asset('css/layout_auth.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">

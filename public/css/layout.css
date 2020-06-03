@@ -6,14 +6,49 @@ main {
 	width: 100%;
 }
 
+#link-menu{
+	flex-grow: 1;
+	border: 1px solid #032c6c4a;
+}
+
+#logo{
+	background: #f8fafc;
+}
+
 #nav-column {
 	min-width: 250px;
+	max-width: 250px;
 	border-right: 1px solid rgba(0,0,0,.1);
 	background-color: white;
 }
 
 header{
-	background: rgba(38, 45, 100, 0.50);
+	background: #032c6c;
+}
+
+.badge-light i, span{
+	color: #032c6c!important;
+}
+
+nav h2{
+
+	color: #032c6c;
+	font-family: Roboto;
+
+}
+
+div#link-menu a{
+	display: block;
+	padding: 5px;
+	font-size: initial;
+	color: #032c6c;
+	font-family: Roboto;
+}
+
+nav small{
+
+	color: #032c6c;
+	font-weight: bolder;
 }
 
 .nav-link, .navbar-brand{

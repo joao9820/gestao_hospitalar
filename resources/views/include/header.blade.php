@@ -2,9 +2,15 @@
 <html>
 	<head>
 		<meta name="csrf-token" content="{{csrf_token()}}">
-		<title> @yield('titulo') </title> <!-- Criando variaveis a partir do blade-->
+		<title> SGMAC - @yield('titulo') </title> <!-- Criando variaveis a partir do blade-->
 	  <!--Import Google Icon Font-->
 	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+      <link rel="shortcut icon" href="{{asset('imagem/logo.ico')}}" >
+
+      <link href="{{asset('fonts/google')}}" >
+
 	  <!-- Compiled and minified CSS -->
 	  <link rel="stylesheet" type="text/css" href="{{asset('css/layout.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
@@ -16,13 +22,17 @@
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 
-	<body>
-
-	<header class="navbar navbar-expand-md shadow-sm">
+<body>
+<div class="d-flex flex-row fill">
+    @include('include.menu')
+    <div class="d-flex flex-column w-100">
+            <header class="navbar navbar-expand-md shadow-sm">
         <div class="container-fluid" >
-            <a class="navbar-brand" href="{{ url('/') }}">
-               <i class="fas fa-capsules"></i> Farmácia Especializada 
-            </a>
+            <span class="badge badge-light">
+                <a class="navbar-brand mx-0 p-1" href="{{ url('/') }}">
+                   <i class="fas fa-pills"></i> <span>SGMAC</span>
+                </a>
+            </span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -66,11 +76,8 @@
                 </div>
             </div>
         </header>
-			
-		<div class="fill d-flex flex-row">
-			@include('include.menu')
 
-			<main class="p-2">
-				<div class="d-flex flex-column">
-					
-			<div class='container fill'>
+		<main class="p-2">
+			<div class="d-flex flex-column">
+				
+		<div class='container fill'>
