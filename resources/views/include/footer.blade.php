@@ -1,7 +1,7 @@
-			</div>
-			</div>		
+					</div>
+				</div>
+			</main>
 		</div>
-	</main>
 	</div>
 			<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 

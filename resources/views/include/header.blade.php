@@ -6,6 +6,7 @@
 	  <!--Import Google Icon Font-->
 	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
       <link rel="shortcut icon" href="{{asset('imagem/logo.ico')}}" >
 
@@ -26,8 +27,8 @@
 <div class="d-flex flex-row fill">
     @include('include.menu')
     <div class="d-flex flex-column w-100">
-            <header class="navbar navbar-expand-md shadow-sm">
-        <div class="container-fluid" >
+        <header class="navbar navbar-expand-md shadow-sm">
+            <div class="container-fluid" >
             <span class="badge badge-light">
                 <a class="navbar-brand mx-0 p-1" href="{{ url('/') }}">
                    <i class="fas fa-pills"></i> <span>SGMAC</span>
@@ -77,7 +78,6 @@
             </div>
         </header>
 
-		<main class="p-2">
-			<div class="d-flex flex-column">
-				
-		<div class='container fill'>
+		<main>
+		      <div class="container fill py-2">
+                    <div class="row mx-0 d-block fill">
