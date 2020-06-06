@@ -24,9 +24,6 @@ Route::prefix('auth')->group(function(){
 	Route::post('registro', 'AuthenticationController@register');
 	Route::post('login', 'AuthenticationController@login');
 
-	//Apenas para teste, depois incluir no grupo abaio
-	Route::get('usuarios', 'UserController@index');
-
 	//Só pode acessar se já tiver logado
 	Route::middleware('apiJWT')->group(function(){
 		Route::post('logout', 'AuthenticationController@logout');
@@ -36,3 +33,6 @@ Route::prefix('auth')->group(function(){
 
 //fica fora do /auth. Só /api/unidades
 Route::get('unidades', 'UnidadesController@index')->middleware('apiJWT');
+
+//Apenas para teste, depois incluir no grupo JWT
+Route::get('usuarios', 'UserController@index');
