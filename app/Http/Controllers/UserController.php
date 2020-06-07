@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -48,7 +50,55 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        /*Nessa página é possível mudar o nível de acesso se a pessoa tiver status 
+        de admin*/
+
+        if(!$user){
+
+            return response()->json(['resp' =>'Usuário não encontrado'], 500);
+
+        }
+
+        //is_admin por default no bd está 0
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:6',
+            'email' => [
+                'required',
+                'string', 'email',
+                    Rule::unique('users')->ignore($user->id)
+            ],
+            'old_password' => [
+                'required',
+                 function ($attribute, $value, $fail) use ($user) {
+                    if (!\Hash::check($value, $user->password)) {
+                        return $fail(__('messages.old_password_incorrect'));
+                    }
+                }
+            ],
+            'is_admin' => 'nullable|boolean',
+            'password' => 'nullable|required|string|confirmed'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if($request->is_admin)
+            $user->is_admin = $request->is_admin;
+
+        if($request->password)
+            $user->password = $request->password;
+
+        if(!$user->save())
+            return response()->json(['Usuário não existe'], 500);
+
+
+        return response()->json(['Dados editados com sucesso!'], 200);
     }
 
     /**

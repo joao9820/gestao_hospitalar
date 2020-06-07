@@ -132,7 +132,7 @@ return [
        '*.check_number' => [
 			'unique' => 'O número do cheque já foi registrado'
 	   ],
-	   'oldPassword' => [
+	   'old_password' => [
 			'required' => 'Informe a senha atual para alteração de e-mail ou senha'
 	   ],
 	   'email' => [
@@ -153,7 +153,7 @@ return [
 
     'attributes' => [
 		'password' => 'senha',
-		'oldPassword' => 'senha atual',
+		'old_password' => 'senha atual',
 		'type_offer' => 'tipo de oferta',
 		'contribution_id' => 'código da contribuição',
 		'total_especie' => 'total espécie',

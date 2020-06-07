@@ -31,6 +31,8 @@ Route::prefix('auth')->group(function(){
 
 });
 
+Route::put('usuarios/{id}', 'Usercontroller@update');
+
 //fica fora do /auth. Só /api/unidades
 Route::get('unidades', 'UnidadesController@index')->middleware('apiJWT');
 
