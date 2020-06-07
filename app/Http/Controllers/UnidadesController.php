@@ -15,7 +15,7 @@ class UnidadesController extends Controller
      */
     public function index()
     {
-        return Unidade::all();
+       return response()->json(Unidade::all(), 200);
     }
 
     public function indexView(){
