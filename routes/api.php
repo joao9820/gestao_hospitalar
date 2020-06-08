@@ -34,7 +34,7 @@ Route::prefix('auth')->group(function(){
 //Admin
 Route::group(['middleware' => ['apiJWT', 'adminApi']], function(){
 
-	Route::delete('usuarios/{id}', 'Usercontroller@destroy');
+	Route::delete('usuarios/{id}', 'UserController@destroy');
 	//O usuário pode ver os dados dele na rota show
 	Route::get('usuarios', 'UserController@index');
 
