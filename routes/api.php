@@ -31,10 +31,23 @@ Route::prefix('auth')->group(function(){
 
 });
 
-Route::put('usuarios/{id}', 'Usercontroller@update');
+//Admin
+Route::group(['middleware' => ['apiJWT', 'adminApi']], function(){
 
-//fica fora do /auth. Só /api/unidades
-Route::get('unidades', 'UnidadesController@index');
+	Route::delete('usuarios/{id}', 'Usercontroller@destroy');
+	//O usuário pode ver os dados dele na rota show
+	Route::get('usuarios', 'UserController@index');
 
-//Apenas para teste, depois incluir no grupo JWT
-Route::get('usuarios', 'UserController@index');
+});
+
+//Usuários
+Route::group(['middleware' => ['apiJWT']], function(){
+
+	Route::put('usuarios/{id}', 'Usercontroller@update');
+	//fica fora do /auth. Só /api/unidades
+	Route::get('unidades', 'UnidadesController@index');
+
+});
+
+
+

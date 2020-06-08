@@ -61,7 +61,7 @@ class UserController extends Controller
 
         }
 
-        //is_admin por default no bd está 0
+        //is_admin por default no bd está 0, o admin não precisa informar a senha antiga
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:6',
             'email' => [
@@ -70,7 +70,7 @@ class UserController extends Controller
                     Rule::unique('users')->ignore($user->id)
             ],
             'old_password' => [
-                'required',
+                'nullable',
                  function ($attribute, $value, $fail) use ($user) {
                     if (!\Hash::check($value, $user->password)) {
                         return $fail(__('messages.old_password_incorrect'));
@@ -92,13 +92,13 @@ class UserController extends Controller
             $user->is_admin = $request->is_admin;
 
         if($request->password)
-            $user->password = $request->password;
+            $user->password = bcrypt($request->password);
 
         if(!$user->save())
-            return response()->json(['Usuário não existe'], 500);
+            return response()->json(['resp' => 'Não foi possível atualizar os dados do usuário'], 500);
 
 
-        return response()->json(['Dados editados com sucesso!'], 200);
+        return response()->json(['resp'=>'Dados atualizados com sucesso!'], 200);
     }
 
     /**
@@ -109,6 +109,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        if(!$user)
+            return response()->json(['resp' =>'Usuário não encontrado'], 500);
+
+        if(!$user->destroy($id))
+            return response()->json(['resp' =>'Não foi possível deletar o usuário'], 500);
+
+        return response()->json(['resp' =>'Usuário deletado com sucesso!'], 200);
     }
 }
