@@ -41,7 +41,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if(!$user)
-            return response()->json('Usuário não foi encontrado', 400);
+            return response()->json(['resp' => 'Usuário não foi encontrado'], 400);
 
         //Retorna o objeto com os atributos públicos do usuário encotrado
         return response()->json($user, 200);
