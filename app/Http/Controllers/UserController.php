@@ -83,7 +83,7 @@ class UserController extends Controller
                     }
                 }
             ],
-            'is_admin' => 'nullable|boolean',
+            'is_admin' => 'nullable',
             'password' => 'nullable|string|confirmed'
         ]);
 
@@ -96,7 +96,7 @@ class UserController extends Controller
         $user->phone = $request->phone;
 
         if(isset($request->is_admin))
-            $user->is_admin = $request->is_admin;
+            $user->is_admin = (boolean) $request->is_admin;
 
         if($request->password)
             $user->password = bcrypt($request->password);
