@@ -84,7 +84,7 @@ class UserController extends Controller
                 }
             ],
             'is_admin' => 'nullable|boolean',
-            'password' => 'nullable|required|string|confirmed'
+            'password' => 'nullable|string|confirmed'
         ]);
 
         if ($validator->fails()) {
