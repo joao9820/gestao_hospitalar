@@ -43,7 +43,10 @@ Route::group(['middleware' => ['apiJWT', 'adminApi']], function(){
 //Usuários
 Route::group(['middleware' => ['apiJWT']], function(){
 
-	Route::put('usuarios/{id}', 'Usercontroller@update');
+	Route::put('usuarios/{id}', 'UserController@update');
+
+    Route::get('usuarios/{id}', 'UserController@show');
+
 	//fica fora do /auth. Só /api/unidades
 	Route::get('unidades', 'UnidadesController@index');
 

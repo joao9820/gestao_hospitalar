@@ -38,7 +38,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        if(!$user)
+            return response()->json(['resp' => 'Usuário não foi encontrado'], 400);
+
+        //Retorna o objeto com os atributos públicos do usuário encotrado
+        return response()->json($user, 200);
     }
 
     /**
@@ -52,7 +58,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        /*Nessa página é possível mudar o nível de acesso se a pessoa tiver status 
+        /*Nessa página é possível mudar o nível de acesso se a pessoa tiver status
         de admin*/
 
         if(!$user){
