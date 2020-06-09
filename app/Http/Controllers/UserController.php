@@ -95,8 +95,8 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
 
-        if(isset($request->is_admin))
-            $user->is_admin = (boolean) $request->is_admin;
+        //Quando o usuário tiver acesso valdiar essa posição
+        $user->is_admin = (boolean) $request->is_admin;
 
         if($request->password)
             $user->password = bcrypt($request->password);
