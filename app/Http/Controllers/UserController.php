@@ -93,8 +93,9 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
 
-        if($request->is_admin)
+        if(isset($request->is_admin))
             $user->is_admin = $request->is_admin;
 
         if($request->password)
