@@ -4,10 +4,6 @@
 
 @section('style')
 <style>
-	#welcome{
-		color: #032c6c;
-		font-family: Raleway;
-	}
 
     .explanation{
 
@@ -41,21 +37,51 @@
 
 @section('conteudo')
 <div class="d-flex flex-column justify-content-between fill">
-	<content id="section top">
+	<content  id="section">
 
-	<h1 id="welcome">Seja Bem Vindo!</h1>
+	<h1 id="title">Seja Bem Vindo!</h1>
+    <hr/>
 
     <div id="why" class="p-4 explanation">
-        <div class="content d-flex">
-            <h3 class="d-inline-block mr-1"><i class="fas fa-question-circle"></i> </h3>
-            <div>
+       
+    
             <h3 class="d-inline-block">Explicando o SGMAC</h3>
                 <div class="ml-2">
                     <p>Esse Sistema foi idealizado e desenvolvido com o intuito de facilitar o acesso aos medicamentos disponibilizados por aqueles que utilizam o serviço da Farmácia de Alto Custo do DF.</p>
                 </div>
-            </div>
+    </div>
+
+
+    <div class="row mb-2">
+        <div class="col-md-4">
+            @component("components.card")
+                @slot('title')
+                    <h4>Solicitação</h4>
+                @endslot
+                    @slot('text')
+                        <p id="cardDesc">
+                            Faça a solicitação do seu medicamento
+                        </p>
+                    @endslot
+                
+            @endcomponent
+        </div>
+        <div class="col-md-4">
+            @component("components.card")
+                @slot('title')
+                    <h4>Unidades</h4>
+                @endslot
+                    @slot('text')
+                        <p id="cardDesc">
+                            Busque o seus medicamentos por unidade
+                        </p>
+                    @endslot
+                
+            @endcomponent
         </div>
     </div>
+
+
     <div id="how-works" class="p-4 explanation">
         <div class="content">
             <div class="d-flex">
@@ -104,35 +130,6 @@
             </div>
         </div>
     </div>
-
-	<div class="row">
-		<div class="col-md-4">
-			@component("components.card")
-				@slot('title')
-					<h4>Solicitação</h4>
-				@endslot
-					@slot('text')
-						<p id="cardDesc">
-							Faça a solicitação do seu medicamento
-						</p>
-					@endslot
-				
-			@endcomponent
-		</div>
-		<div class="col-md-4">
-			@component("components.card")
-				@slot('title')
-					<h4>Unidades</h4>
-				@endslot
-					@slot('text')
-						<p id="cardDesc">
-							Busque o seus medicamentos por unidade
-						</p>
-					@endslot
-				
-			@endcomponent
-		</div>
-	</div>
 	</content>
     <section class="d-flex flex-column-reverse">
     	<div class="row">

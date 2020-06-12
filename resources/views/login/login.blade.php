@@ -24,12 +24,18 @@
 				</div>
 			<div class="card-body m-2 bg-light">
 				
+
 				<!-- Depois incluir uma msg de sessão -->
-				@if(session()->has('msg'))
+				
+				@if(session()->has('alert'))
+					<div class="alert alert-info">
+						{{session()->get('alert')}}
+					</div>
+				@elseif(session()->has('msg'))
 					<div class="alert alert-success">
 						{{session()->get('msg')}}
 					</div>
-				@endif
+				@endif		
 
 				<form method="POST" action="{{ route('login') }}" id="formLogin" novalidate> <!-- enctype para subir arquivos é necessário -->
 

@@ -39,6 +39,12 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['dataCriacao'];
+    public function getDataCriacaoAttribute()
+    {
+        return date('d/m/Y - H:i:s', strtotime($this->attributes['created_at']));
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

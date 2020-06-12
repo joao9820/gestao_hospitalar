@@ -24,7 +24,7 @@
 	</head>
 
 <body>
-<div class="d-flex flex-row fill">
+<div class="d-flex flex-row fill" id="flex-layout">
     @include('include.menu')
     <div class="d-flex flex-column w-100">
         <header class="navbar navbar-expand-md shadow-sm">
@@ -80,4 +80,4 @@
 
 		<main>
 		      <div class="container fill py-2">
-                    <div class="row mx-0 d-block fill">
+                    <div class="row mx-0 d-block fill p-2">

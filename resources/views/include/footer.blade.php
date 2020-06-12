@@ -5,8 +5,8 @@
 	</div>
 			<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 
-			@hasSection('javascript')
-				@yield('javascript')
+			@hasSection('script')
+				@yield('script')
 			@endif
 	</body>
 </html>
