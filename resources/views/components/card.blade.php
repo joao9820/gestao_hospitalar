@@ -1,5 +1,5 @@
 <div class="card">
-		<img class="card-img-top" src="" alt="Imagem Card" height="150px"></img>
+		<img class="card-img-top" src="{{asset("imagem/$img")}}" alt="Imagem Card" height="200px"></img>
 			<div class="card-body">
 			<div class="card-title">
 				{{$title}}

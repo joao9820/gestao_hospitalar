@@ -105,7 +105,7 @@ class UserController extends Controller
             return response()->json(['resp' => 'Não foi possível atualizar os dados do usuário'], 500);
 
 
-        return response()->json(['resp'=>'Dados atualizados com sucesso!'], 200);
+        return response()->json(['resp'=>'Dados atualizados com sucesso!', 'obj' => $user], 200);
     }
 
     /**

@@ -30,7 +30,7 @@
         <header class="navbar navbar-expand-md shadow-sm">
             <div class="container-fluid" >
             <span class="badge badge-light">
-                <a class="navbar-brand mx-0 p-1" href="{{ url('/') }}">
+                <a class="navbar-brand mx-0 p-1" href="{{route('home')}}">
                    <i class="fas fa-pills"></i> <span>SGMAC</span>
                 </a>
             </span>

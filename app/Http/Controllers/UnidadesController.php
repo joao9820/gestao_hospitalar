@@ -18,12 +18,6 @@ class UnidadesController extends Controller
        return response()->json(Unidade::all(), 200);
     }
 
-    public function indexView(){
-
-        return view('unidades');
-
-    }
-
     /**
      * Show the form for creating a new resource.
      *

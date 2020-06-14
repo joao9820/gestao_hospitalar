@@ -14,11 +14,11 @@
 			<div class="d-flex flex-column p-4" id="link-menu">
 
 				<div class="p-2">
-					<a href="#"><i class="fas fa-home"></i> Página Principal</a>
+					<a href="{{route('home')}}"><i class="fas fa-home"></i> Página Principal</a>
 					<a href="{{route('usuarios')}}"><i class="fas fa-user"></i> Usuários</a>
 					<a href="#"><i class="fas fa-pills"></i> Medicamentos</a>
 					<a href="#"><i class="fas fa-calendar-check"></i> Agendamentos</a>
-					<a href="#"><i class="fas fa-building"></i> Unidades</a>
+					<a href="{{route('unidades')}}"><i class="fas fa-building"></i> Unidades</a>
 				</div>
 			</div>
 		</div>

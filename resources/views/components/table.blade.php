@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" id="{{isset($tableId) ? $tableId : ''}}">
 
 	@php
 		$color = 'light';

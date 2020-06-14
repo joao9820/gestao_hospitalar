@@ -55,6 +55,9 @@
     <div class="row mb-2">
         <div class="col-md-4">
             @component("components.card")
+
+                @slot('img', 'card.jpg')
+
                 @slot('title')
                     <h4>Solicitação</h4>
                 @endslot
@@ -68,6 +71,9 @@
         </div>
         <div class="col-md-4">
             @component("components.card")
+
+                @slot('img', 'card.jpg')
+
                 @slot('title')
                     <h4>Unidades</h4>
                 @endslot

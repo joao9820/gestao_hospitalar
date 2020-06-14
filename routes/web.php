@@ -31,6 +31,16 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
 	Route::get('/usuarios', 'Web\UsuariosController@index')->name('usuarios');
 	Route::get('/usuarios/apagar/{id}', 'Web\UsuariosController@destroy')->name('usuario_apagar');
 
+	Route::prefix('api-web')->group(function(){
+
+		Route::put('/usuarios/{id}', 'UserController@update')->name('usuario_atualizar');
+		Route::post('/usuarios', 'AuthenticationController@register')->name('usuario_cadastrar');
+		Route::get('/usuarios/{id}', 'UserController@show')->name('listar_usuario');
+		Route::delete('/usuarios/{id}', 'UserController@destroy')->name('usuario_apagar');							
+	});
+
+	Route::get('/unidades', 'Web\UnidadesController@index')->name('unidades');
+
 });
 
 
