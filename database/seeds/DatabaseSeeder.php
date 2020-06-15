@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsuarioTesteSeeder::class);
         $this->call(StatusSeeder::class);
         $this->call(MedicamentoSeeder::class);
+        $this->call(UnidadesMedicamentosSeeder::class);
+        
     }
 }

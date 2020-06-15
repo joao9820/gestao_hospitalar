@@ -1,8 +1,4 @@
 [
-{"type":"header","version":"4.9.5","comment":"Export to JSON plugin for PHPMyAdmin"},
-{"type":"database","name":"gestao_hospitalar"},
-{"type":"table","name":"unidade_medicamentos","database":"gestao_hospitalar","data":
-[
 {"unidade_id":"1","medicamento_id":"1"},
 {"unidade_id":"2","medicamento_id":"1"},
 {"unidade_id":"3","medicamento_id":"1"},
@@ -375,6 +371,4 @@
 {"unidade_id":"1","medicamento_id":"124"},
 {"unidade_id":"2","medicamento_id":"124"},
 {"unidade_id":"3","medicamento_id":"124"}
-]
-}
 ]
