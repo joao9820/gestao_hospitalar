@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Status;
+use Carbon\Carbon;
 
 class StatusSeeder extends Seeder
 {
