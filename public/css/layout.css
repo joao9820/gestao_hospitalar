@@ -75,3 +75,7 @@ nav{
 	color: #032c6c;
 	font-family: Raleway;
 }
+
+.card:hover {
+	opacity: 0.5;
+}

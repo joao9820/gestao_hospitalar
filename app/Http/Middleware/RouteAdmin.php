@@ -23,7 +23,7 @@ class RouteAdmin
             return $next($request);
 
         //Criar uma view para esse caso
-        return response('Acesso não autorizado');
+        return response('Acesso restrito aos administradores do sistema');
     
     }
 }

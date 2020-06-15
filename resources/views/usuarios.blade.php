@@ -85,7 +85,7 @@
 			<span class="throw-error"></span>
 			<form class="form-horizontal" id="formUsuario">
 				<div class="modal-header">
-					<h5 class="modal-title">Novo Usuário</h5>
+					<h5 class="modal-title">Editar Usuário</h5>
 				</div>
 				<div class="modal-body">
 					<input type="hidden" id="id" class="form-control">
@@ -116,7 +116,7 @@
 								
 						</div>
 					</div>
-
+<!--
 					<div class="form-group">
 						<label for="password" class="control-label">Senha</label>
 						<input type="password" class="form-control" 
@@ -131,7 +131,7 @@
 						<input type="password" class="form-control" 
 						id="password-confirmation" placeholder="Confirme a Senha">
 					</div>
-
+-->
 					<label>Nível de Acesso</label><br/>
 
 					<div class="form-check form-check-inline">

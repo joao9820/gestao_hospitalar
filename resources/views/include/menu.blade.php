@@ -15,10 +15,21 @@
 
 				<div class="p-2">
 					<a href="{{route('home')}}"><i class="fas fa-home"></i> Página Principal</a>
-					<a href="{{route('usuarios')}}"><i class="fas fa-user"></i> Usuários</a>
-					<a href="#"><i class="fas fa-pills"></i> Medicamentos</a>
+					@if(Auth::user()->is_admin)
+						<a href="{{route('usuarios')}}"><i class="fas fa-user"></i> Usuários</a>
+					@endif
+					<a href="{{route('unidades_medicamentos')}}"><i class="fas fa-pills"></i> Medicamentos</a>
 					<a href="#"><i class="fas fa-calendar-check"></i> Agendamentos</a>
 					<a href="{{route('unidades')}}"><i class="fas fa-building"></i> Unidades</a>
+					<a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                       <i class="fas fa-power-off"></i> Sair
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
 				</div>
 			</div>
 		</div>

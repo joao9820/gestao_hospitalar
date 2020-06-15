@@ -24,6 +24,10 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
+	Route::get('/unidades', 'Web\UnidadesController@index')->name('unidades');
+
+	Route::get('/unidades/medicamentos', 'Web\UnidadesMedicamentosController@index')->name('unidades_medicamentos');
+
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function(){
@@ -38,8 +42,6 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
 		Route::get('/usuarios/{id}', 'UserController@show')->name('listar_usuario');
 		Route::delete('/usuarios/{id}', 'UserController@destroy')->name('usuario_apagar');							
 	});
-
-	Route::get('/unidades', 'Web\UnidadesController@index')->name('unidades');
 
 });
 

@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UnidadesNameSeeder::class);
         $this->call(UsuarioTesteSeeder::class);
+        $this->call(MedicamentoSeeder::class);
     }
 }

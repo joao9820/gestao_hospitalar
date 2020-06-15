@@ -17,6 +17,13 @@
 
 		.card {
 			min-height: 400px;
+		
+		}
+
+		a.link-med{
+			
+			text-decoration: none;
+			color: black;
 		}
 
 	</style>
@@ -49,8 +56,9 @@
     <div class="row">
     	@foreach($unidades as $unidade)
     	<div class="col-4">
+    		<a class="link-med" href="{{route('unidades_medicamentos', ['unidade' => $unidade->id])}}">
 			@component('components.card');
-				@slot('img', 'card.jpg');
+				@slot('img', "/unidades/$unidade->img");
 
 				@slot('title')
 
@@ -63,13 +71,14 @@
 					<b>{{$unidade->endereco}}</b>
 					<p>{{$unidade->email}}</p>
 					<p>{{$unidade->phone}}</p>
-					<p>Horário de Funcionamento:</p> 
+					<p><strong>Horário de Funcionamento:</strong></p> 
 					<p>{{$unidade->primeiro_turno_inicio}} às {{$unidade->primeiro_turno_fim}}</p>
 
 
 				@endslot
 
 	    	@endcomponent
+	    	</a>
     	</div>
     	@endforeach
 	</div>
