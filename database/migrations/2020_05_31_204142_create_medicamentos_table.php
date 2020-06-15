@@ -15,7 +15,7 @@ class CreateMedicamentosTable extends Migration
     {
         Schema::create('medicamentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('forma_farmaceutica_id');
+            $table->unsignedBigInteger('forma_farmaceutica_id')->nullable();
             $table->unsignedBigInteger('status_id');
             $table->string('nome');
             $table->text('descricao')->nullable();
