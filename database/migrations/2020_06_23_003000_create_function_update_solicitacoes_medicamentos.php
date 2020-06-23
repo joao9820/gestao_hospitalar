@@ -16,14 +16,14 @@ class CreateFunctionUpdateSolicitacoesMedicamentos extends Migration
          DB::unprepared("
         CREATE OR REPLACE FUNCTION update_item_solicitacao()
         RETURNS trigger AS
-        $BODY$
+        $$
              BEGIN
             UPDATE unidade_medicamentos SET quantidade = ((quantidade + OLD.quantidade_item) - NEW.quantidade_item)
                 WHERE unidade_id = (SELECT unidade_id FROM solicitacoes WHERE id = NEW.solicitacao_id) AND medicamento_id = NEW.medicamento_id;
 
-                RETURN NEW;
-            END;
-        $BODY$
+                      RETURN NULL;
+            END
+        $$ LANGUAGE plpgsql;
         ");
     }
 
