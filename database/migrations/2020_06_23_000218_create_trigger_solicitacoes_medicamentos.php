@@ -15,10 +15,7 @@ class CreateTriggerSolicitacoesMedicamentos extends Migration
     {
         DB::unprepared("
         CREATE TRIGGER Tgr_insert_solicitacao_medicamento AFTER INSERT ON solicitacao_itens FOR EACH ROW
-            BEGIN
-                UPDATE unidade_medicamentos SET quantidade = (quantidade - NEW.quantidade_item)
-                WHERE unidade_id = (SELECT unidade_id FROM solicitacoes WHERE id = NEW.solicitacao_id) AND medicamento_id = NEW.medicamento_id;
-            END
+            EXECUTE PROCEDURE insert_item_solicitacao()
         ");
     }
 
