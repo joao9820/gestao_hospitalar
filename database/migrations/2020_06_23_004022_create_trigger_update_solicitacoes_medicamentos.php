@@ -29,6 +29,6 @@ class CreateTriggerUpdateSolicitacoesMedicamentos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Tgr_update_solicitacao_medicamento');
+         DB::unprepared('DROP TRIGGER Tgr_update_solicitacao_medicamento');
     }
 }
