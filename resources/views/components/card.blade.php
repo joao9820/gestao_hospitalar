@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card {{isset($class) ? $class : ''}}">
 	@if(isset($img))
 		<img class="card-img-top" src="{{asset("imagem/$img")}}" alt="Imagem Card" height="200px"></img>
 	@endif

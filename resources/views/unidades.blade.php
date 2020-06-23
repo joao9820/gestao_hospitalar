@@ -58,6 +58,7 @@
     	<div class="col-4">
     		<a class="link-med" href="{{route('unidades_medicamentos', ['unidade' => $unidade->id])}}">
 			@component('components.card');
+				@slot('class', "card-hover");
 				@slot('img', "/unidades/$unidade->img");
 
 				@slot('title')

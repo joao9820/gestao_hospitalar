@@ -71,7 +71,7 @@
         <div class="col-md-5">
              <a class="link-med" href="{{route('unidades_medicamentos')}}">
             @component("components.card")
-
+                @slot('class', "card-hover");
                 @slot('title')
                     <h4>Medicamentos</h4>
                 @endslot
@@ -92,7 +92,7 @@
         <div class="col-md-5">
             <a class="link-med" href="{{route('unidades')}}">
                 @component("components.card")
-
+                    @slot('class', "card-hover");
                     @slot('title')
                         <h4>Unidades</h4>
                     @endslot

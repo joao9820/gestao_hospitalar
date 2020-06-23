@@ -66,7 +66,7 @@
 		    	@foreach($unidadesMed as $med)
 		    	<div class="col-4">
 					@component('components.card');
-
+						@slot('class', "d-flex align-items-center")
 						@slot('title')
 
 							<h5>{{$med->medicamento->nome}}</h5>
@@ -74,6 +74,11 @@
 						@endslot
 
 						@slot('text')
+
+							<div class="d-flex justify-content-between">
+								<span>QTD: {{$med->medicamento->quantidade}}</span>
+								<span><i class="fas fa-plus-circle text-success"></i></span>
+							</div>
 
 							<b>{{$med->unidade->name}}</b>
 
@@ -95,4 +100,21 @@
     	</footer>
 	</div>
     @endif
+@endsection
+
+@section('script')
+
+	<script type="text/javascript">
+		
+		$.ajaxSetup({
+
+			headers:{
+
+				"X-CSRF-TOKEN" : "{{csrf_token()}}"
+			}
+
+		});
+
+	</script>
+
 @endsection

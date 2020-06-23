@@ -76,6 +76,6 @@ nav{
 	font-family: Raleway;
 }
 
-.card:hover {
+.card-hover:hover {
 	opacity: 0.5;
 }
