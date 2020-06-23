@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateFunctionUpdateSolicitacoesMedicamentos extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+         DB::unprepared("
+        CREATE OR REPLACE FUNCTION update_item_solicitacao()
+        RETURNS trigger AS
+        $BODY$
+             BEGIN
+            UPDATE unidade_medicamentos SET quantidade = ((quantidade + OLD.quantidade_item) - NEW.quantidade_item)
+                WHERE unidade_id = (SELECT unidade_id FROM solicitacoes WHERE id = NEW.solicitacao_id) AND medicamento_id = NEW.medicamento_id;
+
+                RETURN NEW;
+            END;
+        $BODY$
+        ");
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        DB::unprepared('DROP FUNCTION update_item_solicitacao');
+    }
+}
