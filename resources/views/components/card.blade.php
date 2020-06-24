@@ -2,7 +2,7 @@
 	@if(isset($img))
 		<img class="card-img-top" src="{{asset("imagem/$img")}}" alt="Imagem Card" height="200px"></img>
 	@endif
-			<div class="card-body">
+			<div class="card-body {{isset($classBody) ? $classBody : ''}}">
 			<div class="card-title">
 				{{$title}}
 			</div>

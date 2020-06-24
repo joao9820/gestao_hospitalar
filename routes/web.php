@@ -28,6 +28,12 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('/unidades/medicamentos', 'Web\UnidadesMedicamentosController@index')->name('unidades_medicamentos');
 
+	Route::prefix('api-web')->group(function(){
+
+		Route::post('/solicitacoes', 'SolicitacoesController@store')->name('realizar_solicitacao');
+
+	});
+
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function(){
