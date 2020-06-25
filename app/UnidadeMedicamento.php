@@ -16,4 +16,5 @@ class UnidadeMedicamento extends Model
     	return $this->belongsTo("App\Medicamento", "medicamento_id");
 
     }
+
 }

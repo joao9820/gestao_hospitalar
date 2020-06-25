@@ -19,6 +19,7 @@
 
 			margin: 8px 2px;
 			min-height: 165px;
+			background-color: aliceblue;
 
 		}
 
@@ -74,7 +75,7 @@
 		    	@foreach($unidadesMed as $med)
 		    	<div class="col-4">
 					@component('components.card');
-						@slot('class', "d-flex align-items-center")
+						@slot('class', "border border-primary d-flex align-items-center")
 
 						@slot('classBody', 'd-flex flex-column justify-content-between')
 						@slot('title')

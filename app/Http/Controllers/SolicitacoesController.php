@@ -45,11 +45,32 @@ class SolicitacoesController extends Controller
 
         //Sempre terá que trazer apenas uma pendente verificar condições para que isso ocorr\
 
-        $pedidoPendente = $solicitacao::where([['user_id', '=' ,Auth::user()->id], ['unidade_id', '=' ,$request->unidade], ['finalizada', '=' ,false]])->get()->toArray();
+        //Se não encontrar retorna null da collect
+        $pedidoPendente = $solicitacao::where([['user_id', '=' ,Auth::user()->id], ['unidade_id', '=' ,$request->unidade], ['finalizada', '=' ,false]])->first();
 
         if($pedidoPendente){
 
-            $solicitacaoId = $pedidoPendente[0]['id'];
+            $solicitacaoId = $pedidoPendente->id;
+
+            $medicamento_id = $request->medicamento;
+
+
+            $medicamentos = $solicitacao::find($solicitacaoId)->medicamentoExist($medicamento_id)->get();
+
+            if($medicamentos->isNotEmpty()){
+
+
+                /*$existMed = $medicamentos->contains(function($value, $key) use ($medicamento_id){
+
+                    return $value->pivot->medicamento_id == $medicamento_id;
+
+                });*/
+
+                return response()->json(["O medicamento já foi adicionado, verifique a sua cesta"], 400);
+
+            }
+
+
         }else{
 
             $solicitacao->user_id = Auth::user()->id;

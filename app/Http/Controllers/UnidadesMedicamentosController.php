@@ -24,6 +24,8 @@ class UnidadesMedicamentosController extends Controller
             
         $unidadesMed = $unidadesMed->paginate($this->paginate);
 
+        //Pensar em trazer duas posições, outra com os dados da solicitação através de um Join
+
         return response()->json($unidadesMed, 200);
     }
 
