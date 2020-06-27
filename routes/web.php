@@ -28,8 +28,11 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('/unidades/medicamentos', 'Web\UnidadesMedicamentosController@index')->name('unidades_medicamentos');
 
+	Route::get('/solicitacoes', 'Web\SolicitacoesController@index')->name('solicitacoes');
+
 	Route::prefix('api-web')->group(function(){
 
+		Route::get('/solicitacoes-itens/count', 'SolicitacaoItensController@count')->name('count_itens');
 		Route::post('/solicitacoes', 'SolicitacoesController@store')->name('realizar_solicitacao');
 
 	});

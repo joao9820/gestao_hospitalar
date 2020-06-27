@@ -79,3 +79,19 @@ nav{
 .card-hover:hover {
 	opacity: 0.5;
 }
+
+#dot-shop{
+  height: 18px;
+  width: 18px;
+  padding: 1px;
+  margin-top: -10px;
+  margin-left: -10px;
+  background-color: #e3342f !important;
+  border-radius: 50%;
+  display: none;
+}
+
+.little-small{
+	font-size: 70%;
+}
+

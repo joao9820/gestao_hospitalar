@@ -19,6 +19,7 @@
 						<a href="{{route('usuarios')}}"><i class="fas fa-user"></i> Usuários</a>
 					@endif
 					<a href="{{route('unidades_medicamentos')}}"><i class="fas fa-pills"></i> Medicamentos</a>
+					<a href="{{route('solicitacoes')}}"><i class="fas fa-shopping-basket"></i> Solicitacões</a>
 					<a href="#"><i class="fas fa-calendar-check"></i> Agendamentos</a>
 					<a href="{{route('unidades')}}"><i class="fas fa-building"></i> Unidades</a>
 					<a href="{{ route('logout') }}"

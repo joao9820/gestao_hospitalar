@@ -47,7 +47,15 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
-                
+                        <li class="d-flex align-items-center px-3">
+                            <a href="{{route('solicitacoes')}}">
+                                <i class="fas fa-shopping-basket fa-2x text-light"></i>
+                            </a>
+                            <span id="dot-shop">
+                                <small id="number-itens" class="little-small text-light"></small>
+                            </span>
+                            
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>

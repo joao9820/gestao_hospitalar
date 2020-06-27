@@ -31,6 +31,22 @@
 			cursor: pointer;
 		}
 
+		.layout-med{
+
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
+		.card-height{
+			height: 100%;
+			margin: 0;
+		}
+
+		.col-card{
+			padding-bottom: 15px;
+		}
+
 	</style>
 @endsection
 
@@ -73,9 +89,9 @@
 	    <content>
 		    <div class="row">
 		    	@foreach($unidadesMed as $med)
-		    	<div class="col-4">
+		    	<div class="col-4 col-card">
 					@component('components.card');
-						@slot('class', "border border-primary d-flex align-items-center")
+						@slot('class', "border border-primary d-flex align-items-center card-height")
 
 						@slot('classBody', 'd-flex flex-column justify-content-between')
 						@slot('title')
@@ -184,6 +200,7 @@
 				success: function(data){ 
 
 					console.log(data);
+					$('#number-itens').text(data.count);
 
 				},
 				error: function(error, status){

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Solicitacao;
 use App\SolicitacaoItem;
+use Illuminate\Support\Facades\DB;
 
 class SolicitacoesController extends Controller
 {
@@ -17,7 +18,9 @@ class SolicitacoesController extends Controller
      */
     public function index()
     {
-        //
+        $solicitacao = Solicitacao::with('medicamentos')->where([['user_id', Auth::user()->id],  ['finalizada', false]])->get();
+
+        return response()->json($solicitacao, 200);
     }
 
     /**
@@ -94,7 +97,12 @@ class SolicitacoesController extends Controller
             return response()->json(["resp" => "Não foi possível inserir o medicamento à sua cesta"], 400);
         }
 
-        return response()->json(["resp" => "O medicamento foi inserido à sua cesta"], 200);
+        //Criar método em diretorio repository para não repetição de código
+
+        $countItem = $itemSolicitacao::join('solicitacoes', 'solicitacao_itens.solicitacao_id',
+        'solicitacoes.id')->where([['solicitacoes.user_id', Auth::user()->id],  ['solicitacoes.finalizada', false]])->count();
+
+        return response()->json(["resp" => "O medicamento foi inserido à sua cesta", "count" => $countItem], 200);
 
     }
 
