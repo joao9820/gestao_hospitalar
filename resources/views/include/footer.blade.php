@@ -24,6 +24,9 @@
 						dataType: 'json',
 
 						success: function(data){ 
+
+							console.log(data);
+
 							$('#number-itens').text(data);
 							$('#dot-shop').addClass('d-flex justify-content-center');
 

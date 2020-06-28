@@ -15,7 +15,9 @@ class MedicamentoSeeder extends Seeder
     public function run()
     {
 
-        $this->data = file_get_contents("http://pacific-ravine-94784.herokuapp.com/medicamentos.json");
+        //$this->data = file_get_contents("http://pacific-ravine-94784.herokuapp.com/medicamentos.json");
+
+        $this->data = Storage::get('public/medicamentos.json');
 
         $this->dados = json_decode($this->data);
 

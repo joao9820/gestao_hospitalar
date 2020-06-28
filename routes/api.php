@@ -49,6 +49,8 @@ Route::group(['middleware' => ['apiJWT']], function(){
 
     Route::get('unidades/medicamentos', 'UnidadesMedicamentosController@index');
 
+    Route::post('/solicitacoes', 'SolicitacoesController@store')->name('realizar_solicitacao');
+
 	//fica fora do /auth. Só /api/unidades
 	Route::get('unidades', 'UnidadesController@index');
 

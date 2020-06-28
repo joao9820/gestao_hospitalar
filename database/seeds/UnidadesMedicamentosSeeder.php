@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
 class UnidadesMedicamentosSeeder extends Seeder
@@ -13,7 +14,9 @@ class UnidadesMedicamentosSeeder extends Seeder
      */
     public function run()
     {
-         $this->data = file_get_contents("http://pacific-ravine-94784.herokuapp.com/unidade_medicamentos.json");
+         //$this->data = file_get_contents("http://pacific-ravine-94784.herokuapp.com/unidade_medicamentos.json");
+
+        $this->data = Storage::get('public/unidade_medicamentos.json');
 
         $this->dados = json_decode($this->data);
 
